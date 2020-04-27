@@ -1,16 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
+import axios from "axios";
 
 import { axiosWithAuth } from "./utils/axiosWithAuth";
 
 import "./App.css";
 
 export default function App() {
-  // const [credentials, setCredentials] = (e) =>
-  //   useState({
-  //     username: "",
-  //     password: "",
-  //     email: "",
-  //   });
+  // Keep all initial state here
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+    email: "",
+    type: "",
+  });
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("https://devdeskapi.herokuapp.com/api/users")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return <h1>Hi from App.js</h1>;
 }
