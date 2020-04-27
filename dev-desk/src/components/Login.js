@@ -6,7 +6,10 @@ export default function Login(props) {
   return (
     <form className="login-form">
       <h2>Login</h2>
-      <div className="errors"></div>
+      <div className="errors">
+        {errors.name}
+        {errors.password}
+      </div>
 
       <div className="username">
         <label>
@@ -14,7 +17,7 @@ export default function Login(props) {
           <input
             value={values.name}
             onChange={onInputChange}
-            name="username"
+            name="name"
             type="text"
           ></input>
         </label>
@@ -34,8 +37,7 @@ export default function Login(props) {
 
       <div className="submit-button">
         <label>
-          <h4>Login</h4>
-          <button onClick={onSubmit}>login</button>
+          <button className="login-button">Login</button>
         </label>
       </div>
     </form>
