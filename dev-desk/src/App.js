@@ -2,6 +2,7 @@ import React, { useEffect, useState, createContext } from 'react';
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from './utils/axiosWithAuth';
 import * as yup from 'yup';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import CreateTicket from "./components/CreateTicket"
 import './App.css';
@@ -69,7 +70,7 @@ history.push('/protected')
   return (
     <div>
       <Header />
-      <Login values={formValues} onInputChange={onInputChange} onSubmit = {onSubmit} errors={formErrors} />
+      {/* <Login values={formValues} onInputChange={onInputChange} onSubmit = {onSubmit} errors={formErrors} /> */}
 
       <CreateTicket/>
     </div>

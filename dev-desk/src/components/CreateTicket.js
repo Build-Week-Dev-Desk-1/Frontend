@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { DeleteTicketModal } from './DeleteTicketModal';
 import * as yup from 'yup';
 
 const formSchema = yup.object().shape({
@@ -16,6 +17,9 @@ const CreateTicket = () => {
     other: '',
   });
 
+  //modal state
+  const [modalState, setModalState] = useState(false);
+
   //state to disable button
   const [disableButton, setDisableButton] = useState(true);
 
@@ -31,6 +35,10 @@ const CreateTicket = () => {
     });
   }, [formState]);
 
+  function handleModalState() {
+    setModalState(!modalState);
+  }
+
   function handleChange(e) {
     e.persist();
     validateChange(e);
@@ -43,10 +51,11 @@ const CreateTicket = () => {
 
   return (
     <div>
+      <DeleteTicketModal modalState={modalState} setModalState={setModalState} />
       <h1> Let's submit a help Ticket.</h1>
       <h4>
         <span className="asterisk">*</span> Required Fields
-        <AiOutlineCloseCircle classname="no-help" />
+        <AiOutlineCloseCircle className="no-help" onClick={handleModalState} />
       </h4>
 
       <form onSubmit={handleSubmit}>
