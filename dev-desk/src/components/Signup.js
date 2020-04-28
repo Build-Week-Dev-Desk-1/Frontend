@@ -61,6 +61,7 @@ export default function Signup() {
   return (
     <form className="login-form">
       <h2>Sign Up</h2>
+      <br></br>
       <div className="errors">
         {formErrors.email}
         {formErrors.name}

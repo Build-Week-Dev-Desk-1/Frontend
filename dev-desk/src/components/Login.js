@@ -55,6 +55,7 @@ export default function Login(props) {
   return (
     <form className="login-form">
       <h2>Login</h2>
+      <br></br>
       <div className="errors">
         {formErrors.name}
         {formErrors.password}
