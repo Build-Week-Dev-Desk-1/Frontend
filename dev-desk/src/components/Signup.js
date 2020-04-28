@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as yup from "yup";
 
 const formSchema = yup.object().shape({
+  email: yup
+    .string()
+    .min(5, "a valid email is req")
+    .required("this is req"),
   name: yup
     .string()
     .min(5, "*a username is required")
@@ -13,16 +17,18 @@ const formSchema = yup.object().shape({
 });
 
 const initialFormValues = {
+  email: "",
   name: "",
   password: ""
 };
 
 const initialFormErrors = {
+  email: "",
   name: "",
   password: ""
 };
 
-export default function Login(props) {
+export default function Signup() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
@@ -54,10 +60,23 @@ export default function Login(props) {
 
   return (
     <form className="login-form">
-      <h2>Login</h2>
+      <h2>Sign Up</h2>
       <div className="errors">
+        {formErrors.email}
         {formErrors.name}
         {formErrors.password}
+      </div>
+
+      <div className="email">
+        <label>
+          <h3>Email</h3>
+          <input
+            value={formValues.email}
+            onChange={onInputChange}
+            name="email"
+            type="text"
+          ></input>
+        </label>
       </div>
 
       <div className="username">
@@ -86,7 +105,7 @@ export default function Login(props) {
 
       <div className="submit-button">
         <label>
-          <button className="login-button">Login</button>
+          <button className="login-button">Sign Up</button>
         </label>
       </div>
     </form>
