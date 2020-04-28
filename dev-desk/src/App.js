@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
+import axios from "axios";
 
 import { axiosWithAuth } from "./utils/axiosWithAuth";
 import * as yup from "yup";
@@ -30,15 +31,28 @@ const formSchema = yup.object().shape({
 });
 
 export default function App() {
+  // Keep all initial state here
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+    email: "",
+    type: "",
+  });
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("https://devdeskapi.herokuapp.com/api/users")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-  // const [credentials, setCredentials] = (e) =>
-  //   useState({
-  //     username: "",
-  //     password: "",
-  //     email: "",
-  //   });
-
+ 
   const onInputChange = evt => {
     const name = evt.target.name;
     const value = evt.target.value;
