@@ -8,6 +8,7 @@ import "./App.css";
 
 //importing components
 import Login from "./components/Login";
+import Header from "./components/Header";
 
 const initialFormValues = {
   name: "",
@@ -35,17 +36,6 @@ export default function App() {
     email: "",
     type: "",
   });
-
-  useEffect(() => {
-    axiosWithAuth()
-      .get("https://devdeskapi.herokuapp.com/api/users")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
@@ -77,7 +67,7 @@ export default function App() {
 
   return (
     <>
-      <h1>Hi from App.js</h1>
+      <Header />
       <Login
         values={formValues}
         onInputChange={onInputChange}
