@@ -44,7 +44,7 @@ export default function App() {
       <Header />
       <Switch>
         <div className='login-splash'>
-          <Route exact path='/' component={Login} />
+          <Route exact path='/' component={Signup} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
         </div>
