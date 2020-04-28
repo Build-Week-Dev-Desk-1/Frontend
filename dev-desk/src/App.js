@@ -1,13 +1,12 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useState, createContext } from "react";
 import {
-  useHistory,
   BrowserRouter as Router,
   Route,
   Switch,
 } from "react-router-dom";
 import * as yup from "yup";
 
-import { axiosWithAuth } from "./utils/axiosWithAuth";
+
 import CreateTicket from "./components/CreateTicket";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -17,28 +16,12 @@ import "./App.css";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Header from "./components/Header";
+import "./App.css";
 
-const initialFormValues = {
-  name: "",
-  password: "",
-};
+
 
 export default function App() {
-  // Keep all initial state here
-  const [formValues, setFormValues] = useState(initialFormValues);
-
-  let history = useHistory();
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post("/api/auth/login", formValues)
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem("token", JSON.stringify(res.data.payload));
-        history.push("/protected");
-      });
-  };
+ 
   return (
     <Router>
       <Header />
