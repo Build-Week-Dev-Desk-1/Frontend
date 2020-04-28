@@ -54,7 +54,7 @@ export default function Login(props) {
 
   return (
     <form className="login-form">
-      <h2>Login</h2>
+      <h2 className="splash-h2s">Login</h2>
       <br></br>
       <div className="errors">
         {formErrors.name}
@@ -63,7 +63,7 @@ export default function Login(props) {
 
       <div className="username">
         <label>
-          <h3>Username</h3>
+          <h3 className="splash-h3s">Username</h3>
           <input
             value={formValues.name}
             onChange={onInputChange}
@@ -75,7 +75,7 @@ export default function Login(props) {
 
       <div className="password">
         <label>
-          <h3>Password</h3>
+          <h3 className="splash-h3s">Password</h3>
           <input
             value={formValues.password}
             onChange={onInputChange}

@@ -60,7 +60,7 @@ export default function Signup() {
 
   return (
     <form className="login-form">
-      <h2>Sign Up</h2>
+      <h2 className="splash-h2s">Sign Up</h2>
       <br></br>
       <div className="errors">
         {formErrors.email}
@@ -70,7 +70,7 @@ export default function Signup() {
 
       <div className="email">
         <label>
-          <h3>Email</h3>
+          <h3 className="splash-h3s">Email</h3>
           <input
             value={formValues.email}
             onChange={onInputChange}
@@ -82,7 +82,7 @@ export default function Signup() {
 
       <div className="username">
         <label>
-          <h3>Username</h3>
+          <h3 className="splash-h3s">Username</h3>
           <input
             value={formValues.name}
             onChange={onInputChange}
@@ -94,7 +94,7 @@ export default function Signup() {
 
       <div className="password">
         <label>
-          <h3>Password</h3>
+          <h3 className="splash-h3s">Password</h3>
           <input
             value={formValues.password}
             onChange={onInputChange}
