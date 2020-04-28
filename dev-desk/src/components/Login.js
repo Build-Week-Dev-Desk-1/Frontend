@@ -4,7 +4,7 @@ export default function Login(props) {
   const { values, onInputChange, onCheckboxChange, onSubmit, errors } = props;
 
   return (
-    <form className="login-form">
+    <form className="login-form" onSubmit = {onSubmit}>
       <h2>Login</h2>
       <div className="errors">
         {errors.name}
