@@ -1,9 +1,16 @@
 import React, { useEffect, useState, createContext } from "react";
-import { useHistory } from "react-router-dom";
-import { axiosWithAuth } from "./utils/axiosWithAuth";
+import {
+  useHistory,
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
 import * as yup from "yup";
 
+import { axiosWithAuth } from "./utils/axiosWithAuth";
 import CreateTicket from "./components/CreateTicket";
+import PrivateRoute from "./components/PrivateRoute";
+
 import "./App.css";
 
 //importing components
@@ -33,14 +40,17 @@ export default function App() {
       });
   };
   return (
-    <div>
+    <Router>
       <Header />
-      <div className='login-splash'>
-        <Login />
-        <Signup />
-      </div>
-      <CreateTicket />
-    </div>
+      <Switch>
+        <div className='login-splash'>
+          <Route exact path='/' component={Login} />
+          <Route path='/login' component={Login} />
+          <Route path='/signup' component={Signup} />
+        </div>
+        <PrivateRoute exact path='/protected' component={CreateTicket} />
+      </Switch>
+    </Router>
   );
 }
 

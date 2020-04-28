@@ -6,28 +6,33 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
-const Header = props => {
+const Header = (props) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   return (
-    <div className="header">
-      <Navbar color="faded" light>
-        <NavbarBrand href="/" className="mr-auto">
-          <h1 className="logo">Dev Desk</h1>
+    <div className='header'>
+      <Navbar color='faded' light>
+        <NavbarBrand href='/' className='mr-auto'>
+          <h1 className='logo'>Dev Desk</h1>
         </NavbarBrand>
-        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+        <NavbarToggler onClick={toggleNavbar} className='mr-2' />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
-              <NavLink href="">Login</NavLink>
+              <NavLink tag={Link} to='/login'>
+                Login
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="">Sign Up</NavLink>
+              <NavLink tag={Link} to='signup'>
+                Sign Up
+              </NavLink>
             </NavItem>
           </Nav>
         </Collapse>
