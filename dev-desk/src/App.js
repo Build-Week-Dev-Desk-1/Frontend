@@ -11,23 +11,20 @@ import Login from "./components/Login";
 
 const initialFormValues = {
   name: "",
-  password: ""
+  password: "",
 };
 
 const initialFormErrors = {
   name: "",
-  password: ""
+  password: "",
 };
 
 const formSchema = yup.object().shape({
-  name: yup
-    .string()
-    .min(5, "*a username is required")
-    .required("this is req"),
+  name: yup.string().min(5, "*a username is required").required("this is req"),
   password: yup
     .string()
     .min(5, "*a password is required")
-    .required("this is req")
+    .required("this is req"),
 });
 
 export default function App() {
@@ -52,29 +49,29 @@ export default function App() {
 
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
- 
-  const onInputChange = evt => {
+
+  const onInputChange = (evt) => {
     const name = evt.target.name;
     const value = evt.target.value;
 
     yup
       .reach(formSchema, name)
       .validate(value)
-      .then(valid => {
+      .then((valid) => {
         setFormErrors({
           ...formErrors,
-          [name]: ""
+          [name]: "",
         });
       })
-      .catch(error => {
+      .catch((error) => {
         setFormErrors({
           ...formErrors,
-          [name]: error.errors[0]
+          [name]: error.errors[0],
         });
       });
     setFormValues({
       ...formValues,
-      [name]: value
+      [name]: value,
     });
   };
 
