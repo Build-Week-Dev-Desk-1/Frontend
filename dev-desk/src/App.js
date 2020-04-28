@@ -13,7 +13,7 @@ import Header from "./components/Header";
 
 const initialFormValues = {
   name: "",
-  password: ""
+  password: "",
 };
 
 export default function App() {
@@ -22,11 +22,11 @@ export default function App() {
 
   let history = useHistory();
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
       .post("/api/auth/login", formValues)
-      .then(res => {
+      .then((res) => {
         console.log(res);
         localStorage.setItem("token", JSON.stringify(res.data.payload));
         history.push("/protected");
@@ -35,7 +35,7 @@ export default function App() {
   return (
     <div>
       <Header />
-      <div className="login-splash">
+      <div className='login-splash'>
         <Login />
         <Signup />
       </div>
