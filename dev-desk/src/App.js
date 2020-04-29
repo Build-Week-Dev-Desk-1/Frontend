@@ -1,39 +1,39 @@
-import React, { useState, createContext } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
-import * as yup from "yup";
-
-
-import CreateTicket from "./components/CreateTicket";
-import PrivateRoute from "./components/PrivateRoute";
-
-import "./App.css";
+import React, { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import * as yup from 'yup';
 
 //importing components
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import Header from "./components/Header";
-import "./App.css";
+import CreateTicket from './components/CreateTicket';
+import PrivateRoute from './components/PrivateRoute';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Header from './components/Header';
+import './App.css';
 
-
+//import contexts
+import { TicketContext } from './contexts/TicketContext';
 
 export default function App() {
- 
+  const [ticketQue, setTicketQue] = useState([]);
+
+  function addTicket(ticket) {
+    setTicketQue([...ticketQue, ticket]);
+  }
+  console.log(ticketQue);
   return (
-    <Router>
+    <>
       <Header />
-      <Switch>
-        <div className='login-splash'>
-          <Route exact path='/' component={Signup} />
-          <Route path='/login' component={Login} />
-          <Route path='/signup' component={Signup} />
-        </div>
-        <PrivateRoute exact path='/protected' component={CreateTicket} />
-      </Switch>
-    </Router>
+      <TicketContext.Provider value={(ticketQue, addTicket)}>
+        <CreateTicket />
+        <div className="login-splash"></div>
+        <Switch>
+          {/* <Route exact path="/" component={Signup} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} /> */}
+        </Switch>
+        <PrivateRoute exact path="/protected" component={CreateTicket} />
+      </TicketContext.Provider>
+    </>
   );
 }
 
