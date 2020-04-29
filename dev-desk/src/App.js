@@ -32,6 +32,7 @@ export default function App() {
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
           <PrivateRoute exact path='/protected' component={TicketQue} />
+          <PrivateRoute exact path='/createTicket' component={CreateTicket} />
         </Switch>
       </Router>
     </TicketContext.Provider>
