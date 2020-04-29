@@ -96,7 +96,6 @@ export default function Signup() {
           {formErrors.username}
           {formErrors.password}
         </div>
-
         <div className="email">
           <label>
             <h3 className="splash-h3s">Email</h3>
@@ -108,7 +107,6 @@ export default function Signup() {
             ></input>
           </label>
         </div>
-
         <div className="username">
           <label>
             <h3 className="splash-h3s">Username</h3>
@@ -129,10 +127,10 @@ export default function Signup() {
               onChange={onInputChange}
               name="password"
               type="text"
+              className="blurry-text"
             ></input>
           </label>
         </div>
-
         <div className="admin">
           <label>
             <input
@@ -141,10 +139,9 @@ export default function Signup() {
               name="admin"
               type="checkbox"
             />
-            <span> Admin</span>
+            <span> Helper</span>
           </label>
         </div>
-
         <div className="submit-button">
           <label>
             <button className="login-button">Sign Up</button>
