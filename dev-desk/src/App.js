@@ -17,22 +17,22 @@ export default function App() {
   const [user, setUser] = useState({
     id: "",
     username: "",
-    admin: false
+    admin: false,
   });
 
   return (
-    <div className="page-container">
+    <div className='page-container'>
       <TicketContext.Provider value={{ user, setUser }}>
         <Router>
           <Header />
           {/* <CreateTicket /> */}
 
           <Switch>
-            <Route exact path="/" component={Signup} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <PrivateRoute exact path="/protected" component={TicketQue} />
-            <PrivateRoute exact path="/createTicket" component={CreateTicket} />
+            <Route exact path='/' component={Signup} />
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={Signup} />
+            <Route exact path='/protected' component={TicketQue} />
+            <Route exact path='/createTicket' component={CreateTicket} />
           </Switch>
         </Router>
       </TicketContext.Provider>
