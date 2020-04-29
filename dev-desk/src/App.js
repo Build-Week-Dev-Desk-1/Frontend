@@ -26,13 +26,13 @@ export default function App() {
       <Router>
         <Header />
         {/* <CreateTicket /> */}
-        <div className='login-splash'></div>
+        <div className="login-splash"></div>
         <Switch>
-          <Route exact path='/' component={Signup} />
-          <Route path='/login' component={Login} />
-          <Route path='/signup' component={Signup} />
-          <PrivateRoute exact path='/protected' component={TicketQue} />
-          <PrivateRoute exact path='/createTicket' component={CreateTicket} />
+          <Route exact path="/" component={Signup} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <PrivateRoute exact path="/protected" component={TicketQue} />
+          <PrivateRoute exact path="/createTicket" component={CreateTicket} />
         </Switch>
       </Router>
     </TicketContext.Provider>
