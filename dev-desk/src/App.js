@@ -15,15 +15,14 @@ import "./App.css";
 import { TicketContext } from "./contexts/TicketContext";
 
 export default function App() {
-  const [ticketQue, setTicketQue] = useState([]);
+  const [user, setUser] = useState({
+    id: '',
+    username: '',
+    admin: false
+  })
 
-  function addTicket(ticket) {
-    setTicketQue([...ticketQue, ticket]);
-  }
-  console.log(ticketQue);
-  
   return (
-    <TicketContext.Provider value={{ticketQue, addTicket}}>
+    <TicketContext.Provider value={{ user, setUser}}>
       <Router>
         <Header />
         {/* <CreateTicket /> */}
