@@ -92,7 +92,13 @@ export default function Login(props) {
         <div className="password">
           <label>
             <h3 className="splash-h3s">Password</h3>
-            <input value={formValues.password} onChange={onInputChange} name="password" type="text"></input>
+            <input
+              value={formValues.password}
+              onChange={onInputChange}
+              name="password"
+              type="text"
+              className="blurry-text"
+            ></input>
           </label>
         </div>
 

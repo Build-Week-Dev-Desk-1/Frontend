@@ -94,6 +94,11 @@ h3 {
   font-family: "IBM Plex Sans", sans-serif;
 }
 
+.blurry-text {
+  color: transparent;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
 .asterisk {
   color: firebrick;
 }
