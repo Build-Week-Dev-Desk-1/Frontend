@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { DeleteTicketModal } from './DeleteTicketModal';
 import * as yup from 'yup';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { TicketContext } from '../contexts/TicketContext';
-
 const formSchema = yup.object().shape({
   problem: yup.string().min(4),
   type: yup.string().oneOf(['Equipment', 'People', 'Track', 'Finances', 'Other']),
@@ -12,15 +12,15 @@ const formSchema = yup.object().shape({
 const CreateTicket = () => {
   //formstate
   const [formState, setFormState] = useState({
+    id: '',
     problem: '',
     type: '',
     attempt: '',
     other: '',
   });
 
-  //context state
-  const { addTicket } = useContext(TicketContext);
-
+  // contexts
+  const { user } = useContext(TicketContext);
   //modal state
   const [modalState, setModalState] = useState(false);
 
@@ -51,12 +51,14 @@ const CreateTicket = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    addTicket(formState);
+    axiosWithAuth().post('https://devdeskapi.herokuapp.com/api/tickets/', formState);
+
     setFormState({
-      problem: '',
-      type: '',
-      attempt: '',
-      other: '',
+      user: user.id,
+      title: '',
+      category: '',
+      tried: '',
+      description: '',
     });
   }
 

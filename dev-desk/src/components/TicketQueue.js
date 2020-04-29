@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import {TicketContext} from "../contexts/TicketContext"
 
 export default function TicketQue() {
+  const {user} = useContext(TicketContext);
   let history = useHistory();
 
+  console.log({user});
   const createTicket = (e) => {
     e.preventDefault();
     history.push("/createTicket");
@@ -12,7 +15,7 @@ export default function TicketQue() {
 
   useEffect(() => {
     axiosWithAuth()
-      .get("https://devdeskapi.herokuapp.com/api/tickets")
+      .get(`https://devdeskapi.herokuapp.com/api/tickets`)
       .then((res) => {
         console.log(res);
         // this returns all the tickets
@@ -40,7 +43,7 @@ export default function TicketQue() {
   return (
     <>
       <h1>Hi from the Ticket Que</h1>
-      <button onClick={createTicket}>Form</button>
+      <button onClick={createTicket}>Add Ticket</button>
     </>
   );
 }
