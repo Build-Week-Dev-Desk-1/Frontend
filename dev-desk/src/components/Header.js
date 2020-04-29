@@ -30,22 +30,23 @@ const Header = props => {
         <NavbarBrand href="/" className="mr-auto">
           <h1 className="logo">Dev Desk</h1>
         </NavbarBrand>
+
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
               <NavLink onClick={toggleNavbar} tag={Link} to="/signup">
-                Sign Up
+                <div className="menu-links">Sign Up</div>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink onClick={toggleNavbar} tag={Link} to="/login">
-                Log In
+                <div className="menu-links">Log In</div>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink onClick={logout} tag={Link} to="/logout">
-                Log Out
+                <div className="menu-links">Log Out</div>
               </NavLink>
             </NavItem>
           </Nav>

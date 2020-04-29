@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-
 //importing components
 import CreateTicket from "./components/CreateTicket";
 import PrivateRoute from "./components/PrivateRoute";
@@ -16,26 +15,28 @@ import { TicketContext } from "./contexts/TicketContext";
 
 export default function App() {
   const [user, setUser] = useState({
-    id: '',
-    username: '',
+    id: "",
+    username: "",
     admin: false
-  })
+  });
 
   return (
-    <TicketContext.Provider value={{ user, setUser}}>
-      <Router>
-        <Header />
-        {/* <CreateTicket /> */}
-        <div className="login-splash"></div>
-        <Switch>
-          <Route exact path="/" component={Signup} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          <PrivateRoute exact path="/protected" component={TicketQue} />
-          <PrivateRoute exact path="/createTicket" component={CreateTicket} />
-        </Switch>
-      </Router>
-    </TicketContext.Provider>
+    <div className="page-container">
+      <TicketContext.Provider value={{ user, setUser }}>
+        <Router>
+          <Header />
+          {/* <CreateTicket /> */}
+
+          <Switch>
+            <Route exact path="/" component={Signup} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <PrivateRoute exact path="/protected" component={TicketQue} />
+            <PrivateRoute exact path="/createTicket" component={CreateTicket} />
+          </Switch>
+        </Router>
+      </TicketContext.Provider>
+    </div>
   );
 }
 

@@ -4,7 +4,10 @@ import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const formSchema = yup.object().shape({
-  email: yup.string().min(5, "a valid email is req").required("this is req"),
+  email: yup
+    .string()
+    .min(5, "*a valid email is req")
+    .required("this is req"),
   username: yup
     .string()
     .min(5, "*a username is required")
@@ -12,20 +15,20 @@ const formSchema = yup.object().shape({
   password: yup
     .string()
     .min(5, "*a password is required")
-    .required("this is req"),
+    .required("this is req")
 });
 
 const initialFormValues = {
   email: "",
   username: "",
   password: "",
-  admin: false,
+  admin: false
 };
 
 const initialFormErrors = {
   email: "",
   username: "",
-  password: "",
+  password: ""
 };
 
 export default function Signup() {
@@ -34,114 +37,116 @@ export default function Signup() {
 
   let history = useHistory();
 
-  const onInputChange = (evt) => {
+  const onInputChange = evt => {
     const name = evt.target.name;
     const value = evt.target.value;
 
     yup
       .reach(formSchema, name)
       .validate(value)
-      .then((valid) => {
+      .then(valid => {
         setFormErrors({
           ...formErrors,
-          [name]: "",
+          [name]: ""
         });
       })
-      .catch((error) => {
+      .catch(error => {
         setFormErrors({
           ...formErrors,
-          [name]: error.errors[0],
+          [name]: error.errors[0]
         });
       });
 
     setFormValues({
       ...formValues,
-      [name]: value,
+      [name]: value
     });
   };
   console.log(formValues);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     axiosWithAuth()
       .post("https://devdeskapi.herokuapp.com/api/auth/register", formValues)
-      .then((res) => {
+      .then(res => {
         // console.log(res);
         history.push("/login");
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
 
-  const onCheckboxChange = (evt) => {
+  const onCheckboxChange = evt => {
     setFormValues({
       ...formValues,
 
       ...formValues.admin,
-      [evt.target.name]: evt.target.checked,
+      [evt.target.name]: evt.target.checked
     });
   };
 
   return (
-    <div className='login-splash'>
-      <form className='login-form' onSubmit={handleSubmit}>
-        <h2 className='splash-h2s'>Sign Up</h2>
+    <div className="login-splash">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h2 className="splash-h2s">Sign Up</h2>
         <br></br>
-        <div className='errors'>
+        <div className="errors">
           {formErrors.email}
           {formErrors.username}
           {formErrors.password}
         </div>
-        <div className='email'>
+        <div className="email">
           <label>
-            <h3 className='splash-h3s'>Email</h3>
             <input
+              className="input-style"
               value={formValues.email}
               onChange={onInputChange}
-              name='email'
-              type='text'
+              name="email"
+              type="text"
+              placeholder="email"
             ></input>
           </label>
         </div>
-        <div className='username'>
+        <div className="username">
           <label>
-            <h3 className='splash-h3s'>Username</h3>
             <input
+              className="input-style"
               value={formValues.username}
               onChange={onInputChange}
-              name='username'
-              type='text'
+              name="username"
+              type="text"
+              placeholder="username"
             ></input>
           </label>
         </div>
 
-        <div className='password'>
+        <div className="passwordd">
           <label>
-            <h3 className='splash-h3s'>Password</h3>
             <input
+              className="input-style"
               value={formValues.password}
               onChange={onInputChange}
-              name='password'
-              type='password'
-              // className="blurry-text"
+              name="password"
+              type="password"
+              placeholder="password"
             ></input>
           </label>
         </div>
-        <div className='admin'>
+        <div className="admin">
           <label>
             <input
               checked={formValues.admin}
               onChange={onCheckboxChange}
-              name='admin'
-              type='checkbox'
+              name="admin"
+              type="checkbox"
             />
-            <span> Helper</span>
+            <span className="splash-h4s"> Helper</span>
           </label>
         </div>
-        <div className='submit-button'>
+        <div className="submit-button">
           <label>
-            <button className='login-button'>Sign Up</button>
+            <button className="login-button">Sign Up</button>
           </label>
         </div>
       </form>
