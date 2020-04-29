@@ -20,6 +20,7 @@ const Header = (props) => {
   const logout = (e) => {
     e.preventDefault();
     localStorage.clear();
+    toggleNavbar();
     history.push("/login");
   };
 
@@ -33,12 +34,12 @@ const Header = (props) => {
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
-              <NavLink tag={Link} to='/signup'>
+              <NavLink onClick={toggleNavbar} tag={Link} to='/signup'>
                 Sign Up
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to='/login'>
+              <NavLink onClick={toggleNavbar} tag={Link} to='/login'>
                 Log In
               </NavLink>
             </NavItem>
