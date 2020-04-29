@@ -1,22 +1,28 @@
-import React, { useState, useContext } from 'react';
-import * as yup from 'yup';
-import { useHistory } from 'react-router-dom';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
-import { TicketContext } from '../contexts/TicketContext';
+import React, { useState, useContext } from "react";
+import * as yup from "yup";
+import { useHistory } from "react-router-dom";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { TicketContext } from "../contexts/TicketContext";
 
 const formSchema = yup.object().shape({
-  username: yup.string().min(5, '*a username is required').required('this is req'),
-  password: yup.string().min(5, '*a password is required').required('this is req'),
+  username: yup
+    .string()
+    .min(5, "*a username is required")
+    .required("this is req"),
+  password: yup
+    .string()
+    .min(5, "*a password is required")
+    .required("this is req"),
 });
 
 const initialFormValues = {
-  username: '',
-  password: '',
+  username: "",
+  password: "",
 };
 
 const initialFormErrors = {
-  username: '',
-  password: '',
+  username: "",
+  password: "",
 };
 
 export default function Login(props) {
@@ -35,7 +41,7 @@ export default function Login(props) {
       .then((valid) => {
         setFormErrors({
           ...formErrors,
-          [name]: '',
+          [name]: "",
         });
       })
       .catch((error) => {
@@ -54,7 +60,7 @@ export default function Login(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post('https://devdeskapi.herokuapp.com/api/auth/login', formValues)
+      .post("https://devdeskapi.herokuapp.com/api/auth/login", formValues)
       .then((res) => {
         console.log(res);
         setUser({
@@ -62,8 +68,8 @@ export default function Login(props) {
           username: res.data.username,
           admin: res.data.admin,
         });
-        localStorage.setItem('token', res.data.token);
-        history.push('/protected');
+        localStorage.setItem("token", res.data.token);
+        history.push("/protected");
       })
       .catch((err) => {
         console.log(err);
@@ -73,38 +79,43 @@ export default function Login(props) {
   console.log(formValues);
 
   return (
-    <div className="login-splash">
-      <form onSubmit={handleSubmit} className="login-form">
-        <h2 className="splash-h2s">Login</h2>
+    <div className='login-splash'>
+      <form onSubmit={handleSubmit} className='login-form'>
+        <h2 className='splash-h2s'>Login</h2>
         <br></br>
-        <div className="errors">
+        <div className='errors'>
           {formErrors.username}
           {formErrors.password}
         </div>
 
-        <div className="username">
+        <div className='username'>
           <label>
-            <h3 className="splash-h3s">Username</h3>
-            <input value={formValues.username} onChange={onInputChange} name="username" type="text"></input>
-          </label>
-        </div>
-
-        <div className="password">
-          <label>
-            <h3 className="splash-h3s">Password</h3>
+            <h3 className='splash-h3s'>Username</h3>
             <input
-              value={formValues.password}
+              value={formValues.username}
               onChange={onInputChange}
-              name="password"
-              type="text"
-              className="blurry-text"
+              name='username'
+              type='text'
             ></input>
           </label>
         </div>
 
-        <div className="submit-button">
+        <div className='password'>
           <label>
-            <button className="login-button">Login</button>
+            <h3 className='splash-h3s'>Password</h3>
+            <input
+              value={formValues.password}
+              onChange={onInputChange}
+              name='password'
+              type='password'
+              // className='blurry-text'
+            ></input>
+          </label>
+        </div>
+
+        <div className='submit-button'>
+          <label>
+            <button className='login-button'>Login</button>
           </label>
         </div>
       </form>
