@@ -8,12 +8,20 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Header = (props) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
+
+  let history = useHistory();
+
+  const logout = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    history.push("/login");
+  };
 
   return (
     <div className='header'>
@@ -25,14 +33,17 @@ const Header = (props) => {
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
-              <NavLink tag={Link} to='/login'>
-                Login
+              <NavLink tag={Link} to='/signup'>
+                Sign Up
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to='signup'>
-                Sign Up
+              <NavLink tag={Link} to='/login'>
+                Log In
               </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink onClick={logout}>Log Out</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
