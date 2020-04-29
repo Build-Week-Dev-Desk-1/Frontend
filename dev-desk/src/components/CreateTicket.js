@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { DeleteTicketModal } from './DeleteTicketModal';
 import * as yup from 'yup';
+import { TicketContext } from '../contexts/TicketContext';
 
 const formSchema = yup.object().shape({
   problem: yup.string().min(4),
@@ -17,15 +18,32 @@ const CreateTicket = () => {
     other: '',
   });
 
+  //context state
+  const { addTicket } = useContext(TicketContext);
+
   //modal state
   const [modalState, setModalState] = useState(false);
 
   //state to disable button
   const [disableButton, setDisableButton] = useState(true);
 
+  // const [errors, setErrors] = useState({
+  //   problem: '',
+  //   type: '',
+  //   attempt: '',
+  //   other: '',
+  // });
+
   //validation
   function validateChange(e) {
-    yup.reach(formSchema, e.target.type === 'textarea' ? null : e.target.name).validate(e.target.value);
+    yup.reach(formSchema.nullable(), e.target.type === 'textarea' ? null : e.target.name).validate(e.target.value);
+    // .then(valid => {
+    //   setErrors({ ...errors, [e.target.name]: '' });
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    //   setErrors({ ...errors, [e.target.name]: err.errors[0] });
+    // });
   }
 
   //activate button
@@ -42,11 +60,13 @@ const CreateTicket = () => {
   function handleChange(e) {
     e.persist();
     validateChange(e);
-    setFormState({ ...formState, [e.target.name]: e.target.value }, console.log(formState));
+    setFormState({ ...formState, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     console.log(formState);
+    addTicket(formState);
   }
 
   return (
