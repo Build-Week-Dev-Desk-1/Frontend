@@ -8,6 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Header from "./components/Header";
+import TicketQue from "./components/TicketQueue";
 import "./App.css";
 
 //import contexts
@@ -30,7 +31,7 @@ export default function App() {
           <Route exact path='/' component={Signup} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
-          <PrivateRoute exact path='/protected' component={CreateTicket} />
+          <PrivateRoute exact path='/protected' component={TicketQue} />
         </Switch>
       </Router>
     </TicketContext.Provider>
