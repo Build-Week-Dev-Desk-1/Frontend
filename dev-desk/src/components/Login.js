@@ -102,6 +102,7 @@ export default function Login(props) {
               onChange={onInputChange}
               name="password"
               type="text"
+              className="blurry-text"
             ></input>
           </label>
         </div>
