@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import * as yup from "yup";
+
 
 //importing components
 import CreateTicket from "./components/CreateTicket";
@@ -21,8 +21,9 @@ export default function App() {
     setTicketQue([...ticketQue, ticket]);
   }
   console.log(ticketQue);
+  
   return (
-    <TicketContext.Provider value={(ticketQue, addTicket)}>
+    <TicketContext.Provider value={{ticketQue, addTicket}}>
       <Router>
         <Header />
         {/* <CreateTicket /> */}
