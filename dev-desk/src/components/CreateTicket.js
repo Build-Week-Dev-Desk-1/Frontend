@@ -27,23 +27,9 @@ const CreateTicket = () => {
   //state to disable button
   const [disableButton, setDisableButton] = useState(true);
 
-  // const [errors, setErrors] = useState({
-  //   problem: '',
-  //   type: '',
-  //   attempt: '',
-  //   other: '',
-  // });
-
   //validation
   function validateChange(e) {
     yup.reach(formSchema.nullable(), e.target.type === 'textarea' ? null : e.target.name).validate(e.target.value);
-    // .then(valid => {
-    //   setErrors({ ...errors, [e.target.name]: '' });
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    //   setErrors({ ...errors, [e.target.name]: err.errors[0] });
-    // });
   }
 
   //activate button
@@ -65,8 +51,13 @@ const CreateTicket = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(formState);
     addTicket(formState);
+    setFormState({
+      problem: '',
+      type: '',
+      attempt: '',
+      other: '',
+    });
   }
 
   return (
@@ -98,8 +89,10 @@ const CreateTicket = () => {
         <textarea type="textarea" name="attempt" value={formState.attempt} onChange={handleChange} />
         <h3>Anything else we should know about?</h3>
         <textarea type="textarea" name="other" value={formState.other} onChange={handleChange} />
+        <button type="submit" disabled={disableButton}>
+          Submit Ticket
+        </button>
       </form>
-      <button disabled={disableButton}>Submit Ticket</button>
     </div>
   );
 };
