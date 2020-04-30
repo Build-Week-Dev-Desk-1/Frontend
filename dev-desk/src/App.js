@@ -16,8 +16,9 @@ import { TicketContext } from "./contexts/TicketContext";
 
 export default function App() {
   //functions for context
-  const [dummyData, setDummyData] = useState(dummyTickets);
 
+  const [dummyData, setDummyData] = useState(dummyTickets);
+console.log(dummyData)
   const toggleItem = itemId => {
     setDummyData(state =>
       state.map(ticket => {

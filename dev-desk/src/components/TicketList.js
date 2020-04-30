@@ -4,6 +4,9 @@ import Ticket from './Ticket';
 const TicketList = () => {
   const { dummyData } = useContext(TicketContext);
   const { toggleItem } = useContext(TicketContext);
+
+  console.log(dummyData)
+
   return (
     <>
       {dummyData.map((ticket) => {

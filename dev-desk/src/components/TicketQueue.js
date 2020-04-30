@@ -7,7 +7,6 @@ import TicketList from "./TicketList"
 export default function TicketQue() {
   // const {user} = useContext(TicketContext);
 
-
   let history = useHistory();
 
   // console.log({user});
