@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import { TicketContext } from '../contexts/TicketContext';
 import Ticket from './Ticket';
-const TicketList = () => {
-  const { dummyData } = useContext(TicketContext);
-  const { toggleItem } = useContext(TicketContext);
 
-  console.log(dummyData)
+const TicketList = () => {
+  const { dummyData, toggleItem } = useContext(TicketContext);
 
   return (
     <>
@@ -23,10 +21,10 @@ const TicketList = () => {
               </div>
 
               <div>
-                <h5 className="assigned"> { ticket.assigned}</h5>
+                <h5 className="assigned"> {ticket.assigned}</h5>
               </div>
             </div>
-            <Ticket ticket={ticket}  />
+            <Ticket ticket={ticket} />
           </>
         );
       })}
