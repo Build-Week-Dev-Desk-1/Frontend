@@ -33,7 +33,9 @@ export default function TicketQue() {
     <>
       <div className="ticket-que-container">
         <h1>Hi from the Ticket Que</h1>
-        <button onClick={createTicket}>Add Ticket</button>
+        <button id="ticket-but" onClick={createTicket}>
+          Add Ticket
+        </button>
         <TicketList />
       </div>
     </>
