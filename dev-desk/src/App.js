@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //importing components
-import CreateTicket from './components/CreateTicket';
-import PrivateRoute from './components/PrivateRoute';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Header from './components/Header';
-import TicketQue from './components/TicketQueue';
-import './App.css';
-import { dummyUser, dummyTickets } from './components/dummydata';
+import CreateTicket from "./components/CreateTicket";
+import PrivateRoute from "./components/PrivateRoute";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import Header from "./components/Header";
+import TicketQue from "./components/TicketQueue";
+import "./App.css";
+import { dummyUser, dummyTickets } from "./components/dummydata";
 
 //import contexts
-import { TicketContext } from './contexts/TicketContext';
+import { TicketContext } from "./contexts/TicketContext";
 
 export default function App() {
   //functions for context
@@ -38,7 +38,9 @@ export default function App() {
   function assignHelper(ticketId, helper) {
     setDummyData((state) =>
       state.map((ticket) => {
-        return ticket.id === ticketId ? { ...ticket, assigned: helper } : { ...ticket };
+        return ticket.id === ticketId
+          ? { ...ticket, assigned: helper }
+          : { ...ticket };
       })
     );
   }
@@ -50,20 +52,20 @@ export default function App() {
   function reassign(ticketId) {
     setDummyData((state) =>
       state.map((ticket) => {
-        return ticket.id === ticketId ? { ...ticket, assigned: 'Unassigned' } : { ...ticket };
+        return ticket.id === ticketId
+          ? { ...ticket, assigned: "Unassigned" }
+          : { ...ticket };
       })
     );
   }
 
   const [user, setUser] = useState({
-    id: '',
-    username: '',
-
-    admin: false,
+    username: "",
+    role: "",
   });
 
   return (
-    <div className="page-container">
+    <div className='page-container'>
       <TicketContext.Provider
         value={{
           user,
@@ -74,17 +76,18 @@ export default function App() {
           deleteTicket,
           assignHelper,
           reassign,
-        }}>
+        }}
+      >
         <Router>
           <Header />
           {/* <CreateTicket /> */}
 
           <Switch>
-            <Route exact path="/" component={Signup} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route exact path="/protected" component={TicketQue} />
-            <Route exact path="/createTicket" component={CreateTicket} />
+            <Route exact path='/' component={Signup} />
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={Signup} />
+            <Route exact path='/protected' component={TicketQue} />
+            <Route exact path='/createTicket' component={CreateTicket} />
           </Switch>
         </Router>
       </TicketContext.Provider>
