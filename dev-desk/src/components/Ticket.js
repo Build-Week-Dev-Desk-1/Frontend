@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import { TicketContext } from '../contexts/TicketContext';
+import React, { useContext } from "react";
+import { TicketContext } from "../contexts/TicketContext";
 
-import { dummyUser } from './dummydata';
+import { dummyUser } from "./dummydata";
 
 const Ticket = ({ ticket }) => {
   const { deleteTicket } = useContext(TicketContext);
@@ -11,7 +11,7 @@ const Ticket = ({ ticket }) => {
   const { reassign } = useContext(TicketContext);
 
   return (
-    <div className={`bigCard${ticket.clicked ? 'On' : ''}`}>
+    <div className={`bigCard${ticket.clicked ? "On" : ""}`}>
       <h2>
         <strong>{ticket.category}</strong>
       </h2>
@@ -26,9 +26,18 @@ const Ticket = ({ ticket }) => {
       </div>
       <h6> {ticket.assigned}</h6>
       <div>userId: {ticket.userId}</div>
-      <button onClick={() => assignHelper(ticket.id, dummyUser.username)}>Help Student</button>
-      <button onClick={() => deleteTicket(ticket.id)}>resolved</button>
-      <button onClick={() => reassign(ticket.id)}>Reassign</button>
+      <button
+        id="help-buttons"
+        onClick={() => assignHelper(ticket.id, dummyUser.username)}
+      >
+        Help Student
+      </button>
+      <button id="help-buttons" onClick={() => deleteTicket(ticket.id)}>
+        Resolved
+      </button>
+      <button id="help-buttons" onClick={() => reassign(ticket.id)}>
+        Reassign
+      </button>
     </div>
   );
 };
