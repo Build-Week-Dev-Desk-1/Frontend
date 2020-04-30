@@ -12,17 +12,17 @@ const formSchema = yup.object().shape({
   password: yup
     .string()
     .min(5, "*a password is required")
-    .required("this is req")
+    .required("this is req"),
 });
 
 const initialFormValues = {
   username: "",
-  password: ""
+  password: "",
 };
 
 const initialFormErrors = {
   username: "",
-  password: ""
+  password: "",
 };
 
 export default function Login(props) {
@@ -31,47 +31,46 @@ export default function Login(props) {
   const { setUser } = useContext(TicketContext);
   let history = useHistory();
 
-  const onInputChange = evt => {
+  const onInputChange = (evt) => {
     const name = evt.target.name;
     const value = evt.target.value;
 
     yup
       .reach(formSchema, name)
       .validate(value)
-      .then(valid => {
+      .then((valid) => {
         setFormErrors({
           ...formErrors,
-          [name]: ""
+          [name]: "",
         });
       })
-      .catch(error => {
+      .catch((error) => {
         setFormErrors({
           ...formErrors,
-          [name]: error.errors[0]
+          [name]: error.errors[0],
         });
       });
 
     setFormValues({
       ...formValues,
-      [name]: value
+      [name]: value,
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post("https://devdeskapi.herokuapp.com/api/auth/login", formValues)
-      .then(res => {
+      .post("https://devdeskapi.herokuapp.com/auth/login", formValues)
+      .then((res) => {
         console.log(res);
         setUser({
-          id: res.data.id,
-          username: res.data.username,
-          admin: res.data.admin
+          // username: res.data.username,
+          role: res.data.role,
         });
         localStorage.setItem("token", res.data.token);
         history.push("/protected");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -79,44 +78,44 @@ export default function Login(props) {
   console.log(formValues);
 
   return (
-    <div className="login-splash">
-      <form onSubmit={handleSubmit} className="login-form">
-        <h2 className="splash-h2s">Login</h2>
+    <div className='login-splash'>
+      <form onSubmit={handleSubmit} className='login-form'>
+        <h2 className='splash-h2s'>Login</h2>
         <br></br>
-        <div className="errors">
+        <div className='errors'>
           {formErrors.username}
           {formErrors.password}
         </div>
 
-        <div className="username">
+        <div className='username'>
           <label>
             <input
-              className="input-style"
+              className='input-style'
               value={formValues.username}
               onChange={onInputChange}
-              name="username"
-              type="text"
-              placeholder="username"
+              name='username'
+              type='text'
+              placeholder='username'
             ></input>
           </label>
         </div>
 
-        <div className="password">
+        <div className='password'>
           <label>
             <input
-              className="input-style"
+              className='input-style'
               value={formValues.password}
               onChange={onInputChange}
-              name="password"
-              type="password"
-              placeholder="password"
+              name='password'
+              type='password'
+              placeholder='password'
             ></input>
           </label>
         </div>
 
-        <div className="submit-button">
+        <div className='submit-button'>
           <label>
-            <button className="login-button">Login</button>
+            <button className='login-button'>Login</button>
           </label>
         </div>
       </form>
