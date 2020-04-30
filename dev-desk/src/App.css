@@ -221,6 +221,7 @@ h3 {
   margin: 5px;
   padding: 5px;
   box-shadow: -3px 3px silver;
+  font-weight: bold;
 }
 #help-buttons:hover {
   background: lightgrey;
