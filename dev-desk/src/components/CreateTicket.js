@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { DeleteTicketModal } from './DeleteTicketModal';
 import * as yup from 'yup';
@@ -57,7 +58,7 @@ const CreateTicket = () => {
 
     setDummyData([...dummyData, formState]);
 
-    // axiosWithAuth().post('https://devdeskapi.herokuapp.com/api/tickets/', formState);
+    axiosWithAuth().post('https://devdeskapi.herokuapp.com/api/tickets/', formState);
 
     setFormState({
       user: user.id,
@@ -73,7 +74,10 @@ const CreateTicket = () => {
   return (
     //modal
     <div className="ticket-box">
-      <DeleteTicketModal modalState={modalState} setModalState={setModalState} />
+      <DeleteTicketModal
+        modalState={modalState}
+        setModalState={setModalState}
+      />
       <h1> Let's submit a help Ticket.</h1>
       <h4>
         <span className="asterisk">*</span> Required Fields
@@ -84,7 +88,13 @@ const CreateTicket = () => {
         <h3>
           <span className="asterisk">*</span>What's going on?
         </h3>
-        <input name="title" value={formState.title} onChange={handleChange} />
+
+        <input 
+    name="title" 
+    value={formState.title} 
+    onChange={handleChange} 
+    />
+
         <h3>
           <span className="asterisk">*</span>What is this issue about?
         </h3>
@@ -96,12 +106,26 @@ const CreateTicket = () => {
           <option value="Finances">Finances</option>
           <option value="Other">Other</option>
         </select>
-        <h3>What have you tried?</h3>
-        <textarea category="textarea" name="tried" value={formState.description} onChange={handleChange} />
-        <h3>Anything else we should know about?</h3>
-        <textarea category="textarea" name="description" value={formState.other} onChange={handleChange} />
 
-        <button disabled={disableButton}>Submit Ticket</button>
+        <h3>What have you tried?</h3>
+        <textarea
+          type="textarea"
+          name="tried"
+          value={formState.tried}
+          onChange={handleChange}
+        />
+        <h3>Anything else we should know about?</h3>
+        <textarea
+          type="textarea"
+          name="description"
+          value={formState.description}
+          onChange={handleChange}
+        />
+
+          <button id="sub-but" disabled={disableButton}>
+            Submit Ticket
+          </button>
+ 
       </form>
     </div>
   );
