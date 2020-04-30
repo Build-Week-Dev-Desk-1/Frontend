@@ -16,18 +16,18 @@ export default function TicketQue() {
     history.push("/createTicket");
   };
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get(`https://devdeskapi.herokuapp.com/api/tickets`)
-      .then(res => {
-        console.log(res);
-        // this returns all the tickets
-        // the tickets need to be set to state
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get(`https://devdeskapi.herokuapp.com/api/tickets`)
+  //     .then(res => {
+  //       console.log(res);
+  //       // this returns all the tickets
+  //       // the tickets need to be set to state
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   return (
     <>

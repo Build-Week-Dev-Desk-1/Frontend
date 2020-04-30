@@ -1,32 +1,34 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //importing components
-import CreateTicket from "./components/CreateTicket";
-import PrivateRoute from "./components/PrivateRoute";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import Header from "./components/Header";
-import TicketQue from "./components/TicketQueue";
-import "./App.css";
-import { dummyUser, dummyTickets } from "./components/dummydata";
+import CreateTicket from './components/CreateTicket';
+import PrivateRoute from './components/PrivateRoute';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Header from './components/Header';
+import TicketQue from './components/TicketQueue';
+import './App.css';
+import { dummyUser, dummyTickets } from './components/dummydata';
 
 //import contexts
-import { TicketContext } from "./contexts/TicketContext";
+import { TicketContext } from './contexts/TicketContext';
 
 export default function App() {
   //functions for context
-  const [dummyData, setDummyData] = useState(dummyTickets);
 
-  const toggleItem = itemId => {
-    setDummyData(state =>
-      state.map(ticket => {
+  const [dummyData, setDummyData] = useState(dummyTickets);
+  console.log({ dummyData });
+
+  const toggleItem = (itemId) => {
+    setDummyData((state) =>
+      state.map((ticket) => {
         return { ...ticket, clicked: false };
       })
     );
 
-    setDummyData(state =>
-      state.map(item => {
+    setDummyData((state) =>
+      state.map((item) => {
         if (item.id !== itemId) return item;
         return { ...item, clicked: !item.clicked };
       })
@@ -42,7 +44,7 @@ export default function App() {
   }
 
   function deleteTicket(ticketId) {
-    setDummyData(list => list.filter(ticket => ticket.id !== ticketId));
+    setDummyData((list) => list.filter((ticket) => ticket.id !== ticketId));
   }
 
   function reassign(ticketId) {
@@ -57,7 +59,7 @@ export default function App() {
     id: '',
     username: '',
 
-    admin: false
+    admin: false,
   });
 
   return (
@@ -71,9 +73,8 @@ export default function App() {
           toggleItem,
           deleteTicket,
           assignHelper,
-          reassign
-        }}
-      >
+          reassign,
+        }}>
         <Router>
           <Header />
           {/* <CreateTicket /> */}
