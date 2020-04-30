@@ -206,7 +206,7 @@ h3 {
   flex-direction: column;
   justify-content: center;
   padding: 1%;
-  position: fixed;
+  position: absolute;
   margin: 8.5% 16%;
 
   width: 45%;
