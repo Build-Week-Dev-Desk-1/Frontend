@@ -207,7 +207,7 @@ h3 {
   justify-content: center;
   padding: 1%;
 
-  position: fixed;
+  position: absolute;
   margin: 9%;
   width: 45%;
   border: 2px solid dodgerblue;
