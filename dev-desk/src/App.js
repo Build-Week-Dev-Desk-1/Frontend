@@ -17,7 +17,7 @@ import { TicketContext } from './contexts/TicketContext';
 export default function App() {
   //functions for context
   const [dummyData, setDummyData] = useState(dummyTickets);
-
+console.log(dummyData)
   const toggleItem = (itemId) => {
     setDummyData((state) =>
       state.map((ticket) => {
@@ -36,7 +36,7 @@ export default function App() {
   function assignHelper(ticketId, helper) {
     setDummyData((state) =>
       state.map((ticket) => {
-        return ticket.id === ticketId ?  {...ticket, assigned: helper } : {...ticket}
+        return ticket.id === ticketId ? { ...ticket, assigned: helper } : { ...ticket };
       })
     );
   }
@@ -45,7 +45,13 @@ export default function App() {
     setDummyData((list) => list.filter((ticket) => ticket.id !== ticketId));
   }
 
-
+  function reassign(ticketId) {
+    setDummyData((state) =>
+      state.map((ticket) => {
+        return ticket.id === ticketId ? { ...ticket, assigned: 'Unassigned' } : { ...ticket };
+      })
+    );
+  }
 
   const [user, setUser] = useState({
     id: '',
@@ -55,7 +61,8 @@ export default function App() {
   });
 
   return (
-    <TicketContext.Provider value={{ user, setUser, dummyData, setDummyData, toggleItem, deleteTicket, assignHelper }}>
+    <TicketContext.Provider
+      value={{ user, setUser, dummyData, setDummyData, toggleItem, deleteTicket, assignHelper, reassign }}>
       <Router>
         <Header />
         {/* <CreateTicket /> */}

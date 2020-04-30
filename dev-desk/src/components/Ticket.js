@@ -8,6 +8,8 @@ const Ticket = ({ ticket }) => {
 
   const { assignHelper } = useContext(TicketContext);
 
+  const { reassign } = useContext(TicketContext);
+
   return (
     <div className={`bigCard${ticket.clicked ? 'On' : ''}`}>
       <div>userId: {ticket.userId}</div>
@@ -18,7 +20,7 @@ const Ticket = ({ ticket }) => {
       <div>assigned: {ticket.assigned}</div>
       <button onClick={() => assignHelper(ticket.id, dummyUser.username)}>Help Student</button>
       <button onClick={() => deleteTicket(ticket.id)}>resolved</button>
-      <button>Reassign</button>
+      <button onClick={() => reassign(ticket.id)}>Reassign</button>
     </div>
   );
 };

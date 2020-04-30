@@ -20,7 +20,7 @@ const TicketList = () => {
               </div>
 
               <div>
-                <div className="assigned">assigned to: {ticket.assigned}</div>
+                <h5 className="assigned"> { ticket.assigned}</h5>
               </div>
             </div>
             <Ticket ticket={ticket}  />
