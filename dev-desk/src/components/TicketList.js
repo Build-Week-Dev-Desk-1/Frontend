@@ -23,7 +23,7 @@ const TicketList = () => {
                 <div className="assigned">assigned to: {ticket.assigned}</div>
               </div>
             </div>
-            <Ticket ticket={ticket} key={Math.random()} />
+            <Ticket ticket={ticket}  />
           </>
         );
       })}

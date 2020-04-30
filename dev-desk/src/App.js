@@ -1,7 +1,5 @@
-
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //importing components
 import CreateTicket from './components/CreateTicket';
@@ -11,7 +9,7 @@ import Signup from './components/Signup';
 import Header from './components/Header';
 import TicketQue from './components/TicketQueue';
 import './App.css';
-import { dummyUser, dummyTickets } from './components/dummydata';
+import { dummyTickets } from './components/dummydata';
 
 //import contexts
 import { TicketContext } from './contexts/TicketContext';
@@ -35,25 +33,33 @@ export default function App() {
     );
   };
 
+  function assignHelper(ticketId, helper) {
+    setDummyData((state) =>
+      state.map((ticket) => {
+        return ticket.id === ticketId ?  {...ticket, assigned: helper } : {...ticket}
+      })
+    );
+  }
+
   function deleteTicket(ticketId) {
     setDummyData((list) => list.filter((ticket) => ticket.id !== ticketId));
   }
 
-  const [user, setUser] = useState({
 
-    id: "",
-    username: "",
+
+  const [user, setUser] = useState({
+    id: '',
+    username: '',
 
     admin: false,
   });
 
   return (
-
-    <TicketContext.Provider value={{ user, setUser, dummyData, setDummyData, toggleItem, deleteTicket }}>
+    <TicketContext.Provider value={{ user, setUser, dummyData, setDummyData, toggleItem, deleteTicket, assignHelper }}>
       <Router>
         <Header />
         {/* <CreateTicket /> */}
-     
+
         <Switch>
           <Route exact path="/" component={Signup} />
           <Route path="/login" component={Login} />
@@ -63,7 +69,6 @@ export default function App() {
         </Switch>
       </Router>
     </TicketContext.Provider>
-
   );
 }
 
