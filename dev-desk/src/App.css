@@ -146,7 +146,7 @@ h3 {
   align-items: center;
 
   background: LIGHTSLATEGREY;
-  padding: 5%;
+  padding: 1% 10%;
 }
 
 /*CREATE TICKET STYLES*/
@@ -206,9 +206,9 @@ h3 {
   flex-direction: column;
   justify-content: center;
   padding: 1%;
+  position: fixed;
+  margin: 8.5% 16%;
 
-  position: absolute;
-  margin: 9%;
   width: 45%;
   border: 2px solid dodgerblue;
   border-radius: 5px;
@@ -225,6 +225,15 @@ h3 {
 }
 #help-buttons:hover {
   background: lightgrey;
+}
+#unAS {
+  border-radius: 5px;
+  width: 30%;
+}
+@media (max-width: 800px) {
+  #unAS {
+    width: auto;
+  }
 }
 @media (max-width: 800px) {
   .bigCardOn {

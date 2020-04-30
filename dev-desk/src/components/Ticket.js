@@ -24,7 +24,7 @@ const Ticket = ({ ticket }) => {
         <h5>What I've tried</h5>
         <p>{ticket.tried}</p>
       </div>
-      <h6> {ticket.assigned}</h6>
+      <h6 id="unAS"> {ticket.assigned}</h6>
       <div>userId: {ticket.userId}</div>
       <button
         id="help-buttons"
