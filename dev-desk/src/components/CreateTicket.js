@@ -20,8 +20,8 @@ const CreateTicket = () => {
     id: '',
     title: '',
     category: '',
+    tried: '',
     description: '',
-    other: '',
   });
 
   //modal state
@@ -96,10 +96,10 @@ const CreateTicket = () => {
           <option value="Finances">Finances</option>
           <option value="Other">Other</option>
         </select>
-        <h3>What have you description?</h3>
-        <textarea category="textarea" name="description" value={formState.description} onChange={handleChange} />
+        <h3>What have you tried?</h3>
+        <textarea category="textarea" name="tried" value={formState.description} onChange={handleChange} />
         <h3>Anything else we should know about?</h3>
-        <textarea category="textarea" name="other" value={formState.other} onChange={handleChange} />
+        <textarea category="textarea" name="description" value={formState.other} onChange={handleChange} />
 
         <button disabled={disableButton}>Submit Ticket</button>
       </form>
