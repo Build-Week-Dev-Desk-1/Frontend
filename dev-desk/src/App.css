@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&family=Roboto+Mono:ital,wght@1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&family=Roboto+Mono:ital,wght@1,700&display=swap");
 
 .App {
   text-align: center;
@@ -137,7 +137,7 @@ h3 {
 }
 
 .logo {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 /*TICKET QUEUE STYLES*/
 .ticket-que-container {
@@ -205,7 +205,7 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 3%;
+  padding: 1%;
 
   position: fixed;
   margin: 9%;
@@ -215,6 +215,15 @@ h3 {
   color: white;
   background: dodgerblue;
   box-shadow: -10px 10px 10px white;
+}
+#help-buttons {
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+  box-shadow: -3px 3px silver;
+}
+#help-buttons:hover {
+  background: lightgrey;
 }
 @media (max-width: 800px) {
   .bigCardOn {
