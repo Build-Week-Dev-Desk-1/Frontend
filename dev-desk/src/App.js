@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 
 //importing components
 import CreateTicket from './components/CreateTicket';
@@ -38,17 +40,20 @@ export default function App() {
   }
 
   const [user, setUser] = useState({
-    id: '',
-    username: '',
+
+    id: "",
+    username: "",
+
     admin: false,
   });
 
   return (
+
     <TicketContext.Provider value={{ user, setUser, dummyData, setDummyData, toggleItem, deleteTicket }}>
       <Router>
         <Header />
         {/* <CreateTicket /> */}
-        <div className="login-splash"></div>
+     
         <Switch>
           <Route exact path="/" component={Signup} />
           <Route path="/login" component={Login} />
@@ -58,6 +63,7 @@ export default function App() {
         </Switch>
       </Router>
     </TicketContext.Provider>
+
   );
 }
 

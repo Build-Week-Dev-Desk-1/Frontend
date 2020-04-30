@@ -38,6 +38,12 @@
     transform: scale3d() scale3d() scale3d() scale3d() scale3d() rotate(360deg);
   }
 }
+/*SECTION STYLING*/
+
+.page-container {
+  background: SILVER;
+  height: 100vh;
+}
 
 .login-form {
   width: 50%;
@@ -53,36 +59,61 @@
   border-radius: 5px;
   color: white;
 }
+.login-button:hover {
+  background: silver;
+}
 .submit-button {
   padding-top: 2%;
 }
 .errors {
   color: red;
 }
+h1 {
+  color: white;
+}
 
 h2 {
-  color: black;
+  color: white;
 }
 
 h3 {
-  color: black;
+  color: white;
 }
 
 .splash-h2s {
-  font-size: 28px;
+  font-size: 32px;
 }
 .splash-h3s {
   font-size: 20px;
+}
+.splash-h4s {
+  color: white;
+}
+.menu-links {
+  color: white;
+}
+.menu-links:hover {
+  color: black;
 }
 
 .login-splash {
   display: flex;
   flex-direction: row;
 
-  width: 50%;
+  width: 30%;
   margin: auto;
-  border: 0px solid blue;
-  background: lightgrey;
+
+  background: LIGHTSLATEGREY;
+  border-radius: 20px;
+  box-shadow: -10px 10px 10px white;
+}
+
+.input-style {
+  border-radius: 20px;
+  border: 2px solid dodgerblue;
+  background: white;
+  font-size: 20px;
+  text-align: center;
 }
 
 .header {
@@ -92,11 +123,6 @@ h3 {
 
 .logo {
   font-family: 'IBM Plex Sans', sans-serif;
-}
-
-.blurry-text {
-  color: transparent;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .asterisk {
