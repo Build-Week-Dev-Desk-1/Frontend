@@ -21,7 +21,7 @@ const TicketList = () => {
             </div>
             <div></div>
           </div>
-          <Ticket ticket = {ticket}/>
+          <Ticket ticket = { ticket }/>
           </>
         );
         
