@@ -192,7 +192,9 @@ h3 {
   border: 2px solid white;
   border-radius: 5px;
   margin: 5% 70% 0% 0%;
-  color: white;
+  color: black;
+  background: whitesmoke;
+  box-shadow: -10px 10px 10px dodgerblue;
 }
 
 .bigCard {
@@ -208,9 +210,11 @@ h3 {
   position: fixed;
   margin: 9%;
   width: 45%;
-  border: 2px solid white;
+  border: 2px solid dodgerblue;
   border-radius: 5px;
   color: white;
+  background: dodgerblue;
+  box-shadow: -10px 10px 10px white;
 }
 @media (max-width: 800px) {
   .bigCardOn {
