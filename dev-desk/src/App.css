@@ -144,6 +144,7 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   background: LIGHTSLATEGREY;
   padding: 5%;
 }
@@ -185,9 +186,15 @@ h3 {
 
 .littleCard {
   text-align: center;
-  border: 3px solid white;
-  border-radius: 3%;
-  margin: 2%;
+  width: 25%;
+  padding: 1%;
+
+  border: 2px solid white;
+  border-radius: 5px;
+  margin: 5% 70% 0% 0%;
+  color: black;
+  background: whitesmoke;
+  box-shadow: -10px 10px 10px dodgerblue;
 }
 
 .bigCard {
@@ -198,13 +205,32 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2%;
+  padding: 3%;
 
   position: fixed;
-  bottom: 50%;
-  right: 5%;
-  width: 300px;
-  border: 3px solid #73ad21;
+  margin: 9%;
+  width: 45%;
+  border: 2px solid dodgerblue;
+  border-radius: 5px;
+  color: white;
+  background: dodgerblue;
+  box-shadow: -10px 10px 10px white;
+}
+@media (max-width: 800px) {
+  .bigCardOn {
+    width: 40%;
+    margin: 15%;
+  }
+}
+@media (max-width: 500px) {
+  .bigCardOn {
+    margin: 22% 25%;
+    padding: 3%;
+  }
+  .littleCard {
+    width: 40%;
+    margin: 5% 65% 0% 0%;
+  }
 }
 
 .cardContainer {
