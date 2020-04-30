@@ -33,13 +33,29 @@ export default function App() {
     );
   };
 
+  function assignHelper(ticketId, helper) {
+    setDummyData((state) =>
+      state.map((ticket) => {
+        return ticket.id === ticketId ? { ...ticket, assigned: helper } : { ...ticket };
+      })
+    );
+  }
+
   function deleteTicket(ticketId) {
     setDummyData(list => list.filter(ticket => ticket.id !== ticketId));
   }
 
+  function reassign(ticketId) {
+    setDummyData((state) =>
+      state.map((ticket) => {
+        return ticket.id === ticketId ? { ...ticket, assigned: 'Unassigned' } : { ...ticket };
+      })
+    );
+  }
+
   const [user, setUser] = useState({
-    id: "",
-    username: "",
+    id: '',
+    username: '',
 
     admin: false
   });
@@ -53,7 +69,9 @@ export default function App() {
           dummyData,
           setDummyData,
           toggleItem,
-          deleteTicket
+          deleteTicket,
+          assignHelper,
+          reassign
         }}
       >
         <Router>

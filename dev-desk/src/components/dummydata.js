@@ -13,7 +13,7 @@ export const dummyTickets = [
     category: 'Equipment',
     tried: 'nothing',
     description: 'nonthing',
-    assigned: '',
+    assigned: 'Unassigned',
     clicked:false
   },
   {
@@ -24,7 +24,7 @@ export const dummyTickets = [
     category: 'People',
     tried: 'nothing',
     description: 'nonthing',
-    assigned: '',
+    assigned: 'Unassigned',
     clicked:false
   },
   {
@@ -34,7 +34,7 @@ export const dummyTickets = [
     category: 'Track',
     tried: 'nothing',
     description: 'nonthing',
-    assigned: '',
+    assigned: 'Unassigned',
     clicked:false
   },
   {
@@ -44,7 +44,7 @@ export const dummyTickets = [
     category: 'Finances',
     tried: 'nothing',
     description: 'nonthing',
-    assigned: '',
+    assigned: 'Unassigned',
     clicked:false
   },
   {
@@ -54,7 +54,7 @@ export const dummyTickets = [
     category: 'Other',
     tried: 'nothing',
     description: 'nonthing',
-    assigned: '',
+    assigned: 'Unassigned',
     clicked:false
   },
   {
@@ -64,7 +64,7 @@ export const dummyTickets = [
     category: 'Equipment',
     tried: 'nothing',
     description: 'nonthing',
-    assigned: '',
+    assigned: 'Unassigned',
     clicked:false
   },
   {
@@ -74,7 +74,7 @@ export const dummyTickets = [
     category: 'People',
     tried: 'nothing',
     description: 'nonthing',
-    assigned: '',
+    assigned: 'Unassigned',
     clicked:false
   },
   {
@@ -84,7 +84,7 @@ export const dummyTickets = [
     category: 'Finances',
     tried: 'nothing',
     description: 'nonthing',
-    assigned: '',
+    assigned: 'Unassigned',
     clicked:false
   },
 ];

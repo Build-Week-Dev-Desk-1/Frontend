@@ -1,9 +1,15 @@
 import React, { useContext } from 'react';
 import { TicketContext } from '../contexts/TicketContext';
 
+import { dummyUser } from './dummydata';
+
 const Ticket = ({ ticket }) => {
   const { deleteTicket } = useContext(TicketContext);
-  console.log(ticket);
+
+  const { assignHelper } = useContext(TicketContext);
+
+  const { reassign } = useContext(TicketContext);
+
   return (
     <div className={`bigCard${ticket.clicked ? 'On' : ''}`}>
       <div>userId: {ticket.userId}</div>
@@ -12,9 +18,9 @@ const Ticket = ({ ticket }) => {
       <div>tried: {ticket.tried}</div>
       <div>description: {ticket.description}</div>
       <div>assigned: {ticket.assigned}</div>
-      <button>Help Student</button>
+      <button onClick={() => assignHelper(ticket.id, dummyUser.username)}>Help Student</button>
       <button onClick={() => deleteTicket(ticket.id)}>resolved</button>
-      <button>Reassign</button>
+      <button onClick={() => reassign(ticket.id)}>Reassign</button>
     </div>
   );
 };
