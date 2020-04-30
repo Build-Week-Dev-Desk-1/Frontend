@@ -33,7 +33,7 @@ const CreateTicket = () => {
 
   //validation
   function validateChange(e) {
-    yup.reach(formSchema.nullable(), e.target.category === 'textarea' ? null : e.target.name).validate(e.target.value);
+    yup.reach(formSchema.nullable(), e.target.type === 'textarea' ? null : e.target.name).validate(e.target.value);
   }
 
   //activate button
