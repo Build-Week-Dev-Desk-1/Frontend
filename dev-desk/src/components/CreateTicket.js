@@ -8,7 +8,9 @@ import { TicketContext } from '../contexts/TicketContext';
 
 const formSchema = yup.object().shape({
   problem: yup.string().min(4),
-  type: yup.string().oneOf(['Equipment', 'People', 'Track', 'Finances', 'Other']),
+  type: yup
+    .string()
+    .oneOf(["Equipment", "People", "Track", "Finances", "Other"])
 });
 
 const CreateTicket = () => {
@@ -16,11 +18,11 @@ const CreateTicket = () => {
   const { dummyData } = useContext(TicketContext);
   //formstate
   const [formState, setFormState] = useState({
-    id: '',
-    problem: '',
-    type: '',
-    attempt: '',
-    other: '',
+    id: "",
+    problem: "",
+    type: "",
+    attempt: "",
+    other: ""
   });
 
   // contexts
@@ -33,12 +35,17 @@ const CreateTicket = () => {
 
   //validation
   function validateChange(e) {
-    yup.reach(formSchema.nullable(), e.target.type === 'textarea' ? null : e.target.name).validate(e.target.value);
+    yup
+      .reach(
+        formSchema.nullable(),
+        e.target.type === "textarea" ? null : e.target.name
+      )
+      .validate(e.target.value);
   }
 
   //activate button
   useEffect(() => {
-    formSchema.isValid(formState).then((valid) => {
+    formSchema.isValid(formState).then(valid => {
       setDisableButton(!valid);
     });
   }, [formState]);
@@ -64,16 +71,16 @@ const CreateTicket = () => {
 
     setFormState({
       user: user.id,
-      title: '',
-      category: '',
-      tried: '',
-      description: '',
+      title: "",
+      category: "",
+      tried: "",
+      description: ""
     });
   }
 
   return (
     //modal 
-    <div>
+    <div className="ticket-box">
       <DeleteTicketModal modalState={modalState} setModalState={setModalState} />
       <h1> Let's submit a help Ticket.</h1>
       <h4>
@@ -106,7 +113,6 @@ const CreateTicket = () => {
           <button disabled={disableButton}>
             Submit Ticket
           </button>
-
         </Link>
       </form>
     </div>

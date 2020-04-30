@@ -1,40 +1,41 @@
-import React, { useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
-import Ticket from "./Ticket"
-import TicketList from "./TicketList"
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import Ticket from "./Ticket";
+import TicketList from "./TicketList";
 
 export default function TicketQue() {
   // const {user} = useContext(TicketContext);
-
 
   let history = useHistory();
 
   // console.log({user});
 
-  const createTicket = (e) => {
+  const createTicket = e => {
     e.preventDefault();
-    history.push('/createTicket');
+    history.push("/createTicket");
   };
 
   useEffect(() => {
     axiosWithAuth()
       .get(`https://devdeskapi.herokuapp.com/api/tickets`)
-      .then((res) => {
+      .then(res => {
         console.log(res);
         // this returns all the tickets
         // the tickets need to be set to state
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, []);
 
   return (
     <>
-      <h1>Hi from the Ticket Que</h1>
-      <button onClick={createTicket}>Add Ticket</button>
-      <TicketList/>
+      <div className="ticket-que-container">
+        <h1>Hi from the Ticket Que</h1>
+        <button onClick={createTicket}>Add Ticket</button>
+        <TicketList />
+      </div>
     </>
   );
 }
