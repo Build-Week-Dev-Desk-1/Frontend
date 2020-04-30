@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { TicketContext } from '../contexts/TicketContext';
-import Ticket from "./Ticket"
+import Ticket from './Ticket';
 const TicketList = () => {
   const { dummyData } = useContext(TicketContext);
   const { toggleItem } = useContext(TicketContext);
@@ -8,23 +8,24 @@ const TicketList = () => {
     <>
       {dummyData.map((ticket) => {
         return (
-            <>
-          <div className="cardContainer" key={Math.random()}>
+          <>
             <div
               className="littleCard"
               onClick={() => {
                 toggleItem(ticket.id);
               }}>
-              <div>{ticket.category}</div>
-              <div> {ticket.title}</div>
-              <div>assigned to: {ticket.assigned}</div>
+              <div className="little-content">
+                <h4>{ticket.category}</h4>
+                <p> {ticket.title}</p>
+              </div>
+
+              <div>
+                <div className="assigned">assigned to: {ticket.assigned}</div>
+              </div>
             </div>
-            <div></div>
-          </div>
-          <Ticket ticket = { ticket }/>
+            <Ticket ticket={ticket} key={Math.random()} />
           </>
         );
-        
       })}
     </>
   );

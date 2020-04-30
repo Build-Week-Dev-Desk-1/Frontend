@@ -3,7 +3,7 @@ import { TicketContext } from '../contexts/TicketContext';
 
 const Ticket = ({ ticket }) => {
   const { deleteTicket } = useContext(TicketContext);
-  console.log(ticket);
+
   return (
     <div className={`bigCard${ticket.clicked ? 'On' : ''}`}>
       <div>userId: {ticket.userId}</div>
