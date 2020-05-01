@@ -58,6 +58,7 @@ export default function Login(props) {
   };
 
   const handleSubmit = (e) => {
+    console.log(formValues);
     e.preventDefault();
     axiosWithAuth()
       .post("https://devdeskapi.herokuapp.com/auth/login", formValues)
