@@ -22,7 +22,7 @@ const Ticket = ({ ticket }) => {
       </div>
       <h6 id="unAS"> {ticket.assigned}</h6>
 
-      <div className={`tech${role === 'helper' ? '-on' : ''}`}>
+      <div className={`helper${role === 'helper' ? '-on' : ''}`}>
         <button id="help-buttons" onClick={() => assignHelper(ticket.id, user)}>
           Help Student
         </button>
