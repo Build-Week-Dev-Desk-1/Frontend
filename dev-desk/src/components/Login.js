@@ -28,7 +28,7 @@ const initialFormErrors = {
 export default function Login(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-  const { setRole } = useContext(TicketContext);
+  const { setRole, setUser } = useContext(TicketContext);
   let history = useHistory();
 
   const onInputChange = (evt) => {
@@ -64,8 +64,12 @@ export default function Login(props) {
       .post("https://devdeskapi.herokuapp.com/auth/login", formValues)
       .then((res) => {
         console.log(res);
-        setRole(res.data.role);
+        localStorage.setItem('user', formValues.username.toString())
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem('role', res.data.role)
+        
+
+        setUser(localStorage.getItem('user'))
         history.push("/protected");
       })
       .catch((err) => {
