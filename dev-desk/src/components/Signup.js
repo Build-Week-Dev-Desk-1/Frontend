@@ -34,6 +34,8 @@ export default function Signup() {
 
   let history = useHistory();
 
+  let myVal = "";
+
   const onInputChange = (evt) => {
     const name = evt.target.name;
     const value = evt.target.value;
@@ -64,7 +66,7 @@ export default function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post("https://devdeskapi.herokuapp.com/api/auth/register", formValues)
+      .post("https://devdeskapi.herokuapp.com/auth/register", formValues)
       .then((res) => {
         // console.log(res);
         history.push("/login");
@@ -75,12 +77,28 @@ export default function Signup() {
   };
 
   const onCheckboxChange = (evt) => {
-    setFormValues({
-      ...formValues,
+    console.log(evt.target.checked);
+    if (evt.target.checked) {
+      setFormValues({
+        ...formValues,
 
-      ...formValues.role,
-      [evt.target.name]: evt.target.checked,
-    });
+        ...formValues.role,
+        [evt.target.name]: "tech",
+      });
+    } else {
+      setFormValues({
+        ...formValues,
+
+        ...formValues.role,
+        [evt.target.name]: "student",
+      });
+    }
+    // setFormValues({
+    //   ...formValues,
+
+    //   ...formValues.role,
+    //   [evt.target.name]: myVal,
+    // });
     console.log(formValues);
   };
 
@@ -134,13 +152,9 @@ export default function Signup() {
         <div className='admin'>
           <label>
             <input
-              checked={
-                formValues.role
-                  ? (formValues.role = "tech")
-                  : (formValues.role = "student")
-              }
+              checked={formValues.role}
               onChange={onCheckboxChange}
-              name='admin'
+              name='role'
               type='checkbox'
             />
             <span className='splash-h4s'> Helper</span>
