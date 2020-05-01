@@ -6,7 +6,7 @@ import TicketList from "./TicketList";
 import { TicketContext } from "../contexts/TicketContext";
 
 export default function TicketQue() {
-  const { role } = useContext(TicketContext);
+  const { role, setTickets } = useContext(TicketContext);
 
   let history = useHistory();
 

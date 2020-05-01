@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import TicketQue from "./components/TicketQueue";
 import "./App.css";
 import { dummyUser, dummyTickets } from "./components/dummydata";
+import { axiosWithAuth } from "./utils/axiosWithAuth";
 
 //import contexts
 import { TicketContext } from "./contexts/TicketContext";
