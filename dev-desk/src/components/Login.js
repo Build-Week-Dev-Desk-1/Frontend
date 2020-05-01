@@ -1,34 +1,28 @@
-import React, { useState, useContext } from "react";
-import * as yup from "yup";
-import { useHistory } from "react-router-dom";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { TicketContext } from "../contexts/TicketContext";
+import React, { useState, useContext } from 'react';
+import * as yup from 'yup';
+import { useHistory } from 'react-router-dom';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { TicketContext } from '../contexts/TicketContext';
 
 const formSchema = yup.object().shape({
-  username: yup
-    .string()
-    .min(5, "*a username is required")
-    .required("this is req"),
-  password: yup
-    .string()
-    .min(5, "*a password is required")
-    .required("this is req"),
+  username: yup.string().min(5, '*a username is required').required('this is req'),
+  password: yup.string().min(5, '*a password is required').required('this is req'),
 });
 
 const initialFormValues = {
-  username: "",
-  password: "",
+  username: '',
+  password: '',
 };
 
 const initialFormErrors = {
-  username: "",
-  password: "",
+  username: '',
+  password: '',
 };
 
 export default function Login(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-  const { setRole, setUser } = useContext(TicketContext);
+  const { setRole, setUser, setCounter, counter } = useContext(TicketContext);
   let history = useHistory();
 
   const onInputChange = (evt) => {
@@ -41,7 +35,7 @@ export default function Login(props) {
       .then((valid) => {
         setFormErrors({
           ...formErrors,
-          [name]: "",
+          [name]: '',
         });
       })
       .catch((error) => {
@@ -61,16 +55,15 @@ export default function Login(props) {
     console.log(formValues);
     e.preventDefault();
     axiosWithAuth()
-      .post("https://devdeskapi.herokuapp.com/auth/login", formValues)
+      .post('https://devdeskapi.herokuapp.com/auth/login', formValues)
       .then((res) => {
         console.log(res);
-        localStorage.setItem('user', formValues.username.toString())
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem('role', res.data.role)
-        
-
-        setUser(localStorage.getItem('user'))
-        history.push("/protected");
+        localStorage.setItem('user', formValues.username.toString());
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('role', res.data.role);
+        setUser(localStorage.getItem('user'));
+        history.push('/protected');
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -80,44 +73,42 @@ export default function Login(props) {
   console.log(formValues);
 
   return (
-    <div className='login-splash'>
-      <form onSubmit={handleSubmit} className='login-form'>
-        <h2 className='splash-h2s'>Login</h2>
+    <div className="login-splash">
+      <form onSubmit={handleSubmit} className="login-form">
+        <h2 className="splash-h2s">Login</h2>
         <br></br>
-        <div className='errors'>
+        <div className="errors">
           {formErrors.username}
           {formErrors.password}
         </div>
 
-        <div className='username'>
+        <div className="username">
           <label>
             <input
-              className='input-style'
+              className="input-style"
               value={formValues.username}
               onChange={onInputChange}
-              name='username'
-              type='text'
-              placeholder='username'
-            ></input>
+              name="username"
+              type="text"
+              placeholder="username"></input>
           </label>
         </div>
 
-        <div className='password'>
+        <div className="password">
           <label>
             <input
-              className='input-style'
+              className="input-style"
               value={formValues.password}
               onChange={onInputChange}
-              name='password'
-              type='password'
-              placeholder='password'
-            ></input>
+              name="password"
+              type="password"
+              placeholder="password"></input>
           </label>
         </div>
 
-        <div className='submit-button'>
+        <div className="submit-button">
           <label>
-            <button className='login-button'>Login</button>
+            <button className="login-button">Login</button>
           </label>
         </div>
       </form>

@@ -20,17 +20,20 @@ export default function App() {
   const [tickets, setTickets] = useState([]);
   // console.log(tickets);
 
+const [counter, setCounter] = useState(0)
+
   useEffect(() => {
     axiosWithAuth()
       .get(`https://devdeskapi.herokuapp.com/tickets`)
       .then((res) => {
         // console.log(res);
+        
         setTickets(res.data);
       })
       .catch((err) => {
         // console.log(err);
       });
-  }, []);
+  }, [counter]);
 
   const toggleItem = (itemId) => {
     setTickets((state) =>
@@ -90,6 +93,8 @@ console.log(role);
     <div className="page-container">
       <TicketContext.Provider
         value={{
+          counter,
+          setCounter,
           user,
           setUser,
           getTickets,
