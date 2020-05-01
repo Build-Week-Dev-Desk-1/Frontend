@@ -83,7 +83,6 @@ console.log(role);
         setTickets(res.data);
       })
       .catch((err) => {
-        // console.log(err);
       });
   };
 
