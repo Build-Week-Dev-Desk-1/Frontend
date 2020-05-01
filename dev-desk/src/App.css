@@ -264,3 +264,12 @@ h6 {
   text-align: center;
   padding: 1%;
 }
+
+.resolved{
+  display: none;
+  
+}
+.resolved-on{
+display: block;
+color:red;
+}

@@ -14,7 +14,7 @@ const formSchema = yup.object().shape({
 
 const CreateTicket = () => {
   const history = useHistory();
-  const { setDummyData, dummyData, user } = useContext(TicketContext);
+  const { setTickets, tickets, user } = useContext(TicketContext);
 
   //formstate
   const [formState, setFormState] = useState({
@@ -56,12 +56,11 @@ const CreateTicket = () => {
   function handleSubmit(e) {
     e.preventDefault();
 
-    setDummyData([...dummyData, formState]);
+    setTickets([...tickets, formState]);
 
     axiosWithAuth().post('https://devdeskapi.herokuapp.com/api/tickets/', formState);
 
     setFormState({
-      user: user.id,
       title: '',
       category: '',
       tried: '',

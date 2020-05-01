@@ -3,11 +3,12 @@ import { TicketContext } from "../contexts/TicketContext";
 import Ticket from "./Ticket";
 
 const TicketList = () => {
-  const { dummyData, toggleItem } = useContext(TicketContext);
+  const { tickets, toggleItem } = useContext(TicketContext);
 
   return (
     <>
-      {dummyData.map(ticket => {
+      {tickets.map(ticket => {
+        {/* console.log(ticket); */}
         return (
           <>
             <div
@@ -17,6 +18,7 @@ const TicketList = () => {
               }}
             >
               <div className="little-content">
+              <h1 className={`resolved${ticket.resolved ? "-on" : ""}`}>Resolved!</h1>
                 <h4>{ticket.category}</h4>
                 <p> {ticket.title}</p>
               </div>
