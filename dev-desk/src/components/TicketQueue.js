@@ -1,39 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import Ticket from "./Ticket";
 import TicketList from "./TicketList";
+import { TicketContext } from "../contexts/TicketContext";
 
 export default function TicketQue() {
-  // const {user} = useContext(TicketContext);
+  const { role, setTickets } = useContext(TicketContext);
 
   let history = useHistory();
 
-  // console.log({user});
+  console.log(role);
 
-  const createTicket = e => {
+  const createTicket = (e) => {
     e.preventDefault();
     history.push("/createTicket");
   };
 
-  // useEffect(() => {
-  //   axiosWithAuth()
-  //     .get(`https://devdeskapi.herokuapp.com/api/tickets`)
-  //     .then(res => {
-  //       console.log(res);
-  //       // this returns all the tickets
-  //       // the tickets need to be set to state
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`https://devdeskapi.herokuapp.com/tickets`)
+      .then((res) => {
+        console.log(res);
+        setTickets(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <>
-      <div className="ticket-que-container">
+      <div className='ticket-que-container'>
         <h1>Hi from the Ticket Que</h1>
-        <button id="ticket-but" onClick={createTicket}>
+        <button id='ticket-but' onClick={createTicket}>
           Add Ticket
         </button>
         <TicketList />

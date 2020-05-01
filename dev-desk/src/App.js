@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import TicketQue from "./components/TicketQueue";
 import "./App.css";
 import { dummyUser, dummyTickets } from "./components/dummydata";
+import { axiosWithAuth } from "./utils/axiosWithAuth";
 
 //import contexts
 import { TicketContext } from "./contexts/TicketContext";
@@ -17,6 +18,7 @@ import { TicketContext } from "./contexts/TicketContext";
 export default function App() {
   //functions for context
 
+  const [tickets, setTickets] = useState();
   const [dummyData, setDummyData] = useState(dummyTickets);
   console.log({ dummyData });
 
@@ -59,17 +61,30 @@ export default function App() {
     );
   }
 
-  const [user, setUser] = useState({
-    username: "",
+  const [role, setRole] = useState({
     role: "",
   });
+
+  const getTickets = () => {
+    axiosWithAuth()
+      .get(`https://devdeskapi.herokuapp.com/tickets`)
+      .then((res) => {
+        console.log(res);
+        setTickets(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className='page-container'>
       <TicketContext.Provider
         value={{
-          user,
-          setUser,
+          role,
+          tickets,
+          setTickets,
+          setRole,
           dummyData,
           setDummyData,
           toggleItem,
@@ -86,8 +101,8 @@ export default function App() {
             <Route exact path='/' component={Signup} />
             <Route path='/login' component={Login} />
             <Route path='/signup' component={Signup} />
-            <Route exact path='/protected' component={TicketQue} />
-            <Route exact path='/createTicket' component={CreateTicket} />
+            <PrivateRoute exact path='/protected' component={TicketQue} />
+            <PrivateRoute exact path='/createTicket' component={CreateTicket} />
           </Switch>
         </Router>
       </TicketContext.Provider>
