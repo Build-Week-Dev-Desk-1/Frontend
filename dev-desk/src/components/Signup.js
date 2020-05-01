@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const formSchema = yup.object().shape({
-  email: yup.string().min(5, "*a valid email is req").required("this is req"),
+  email: yup.string().email("Invalid email").required("this is req"),
   username: yup
     .string()
     .min(5, "*a username is required")
@@ -13,6 +13,8 @@ const formSchema = yup.object().shape({
     .string()
     .min(5, "*a password is required")
     .required("this is req"),
+
+  role: yup.string().required("this is required"),
 });
 
 const initialFormValues = {
@@ -33,8 +35,6 @@ export default function Signup() {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
   let history = useHistory();
-
-  let myVal = "";
 
   const onInputChange = (evt) => {
     const name = evt.target.name;
@@ -77,29 +77,12 @@ export default function Signup() {
   };
 
   const onCheckboxChange = (evt) => {
-    console.log(evt.target.checked);
-    if (evt.target.checked) {
-      setFormValues({
-        ...formValues,
+    setFormValues({
+      ...formValues,
 
-        ...formValues.role,
-        [evt.target.name]: "tech",
-      });
-    } else {
-      setFormValues({
-        ...formValues,
-
-        ...formValues.role,
-        [evt.target.name]: "student",
-      });
-    }
-    // setFormValues({
-    //   ...formValues,
-
-    //   ...formValues.role,
-    //   [evt.target.name]: myVal,
-    // });
-    console.log(formValues);
+      ...formValues.role,
+      [evt.target.name]: evt.target.checked,
+    });
   };
 
   return (
@@ -149,17 +132,21 @@ export default function Signup() {
             ></input>
           </label>
         </div>
-        <div className='admin'>
+
+        <div className='choice'>
           <label>
-            <input
-              checked={formValues.role}
-              onChange={onCheckboxChange}
+            <h5></h5>
+            <select
+              value={formValues.role}
+              onChange={onInputChange}
               name='role'
-              type='checkbox'
-            />
-            <span className='splash-h4s'> Helper</span>
+            >
+              <option defaultValue='Student'>Student</option>
+              <option value='Tech'>Tech</option>
+            </select>
           </label>
         </div>
+
         <div className='submit-button'>
           <label>
             <button className='login-button'>Sign Up</button>

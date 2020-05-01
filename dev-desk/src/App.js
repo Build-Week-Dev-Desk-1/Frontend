@@ -17,6 +17,7 @@ import { TicketContext } from "./contexts/TicketContext";
 export default function App() {
   //functions for context
 
+  const [tickets, setTickets] = useState();
   const [dummyData, setDummyData] = useState(dummyTickets);
   console.log({ dummyData });
 
@@ -59,17 +60,30 @@ export default function App() {
     );
   }
 
-  const [user, setUser] = useState({
-    username: "",
+  const [role, setRole] = useState({
     role: "",
   });
+
+  const getTickets = () => {
+    axiosWithAuth()
+      .get(`https://devdeskapi.herokuapp.com/tickets`)
+      .then((res) => {
+        console.log(res);
+        setTickets(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className='page-container'>
       <TicketContext.Provider
         value={{
-          user,
-          setUser,
+          role,
+          tickets,
+          setTickets,
+          setRole,
           dummyData,
           setDummyData,
           toggleItem,
