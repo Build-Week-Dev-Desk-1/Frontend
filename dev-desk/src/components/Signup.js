@@ -6,7 +6,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const formSchema = yup.object().shape({
   email: yup
     .string()
-    .min(5, "*a valid email is req")
+    .email("Invalid email")
     .required("this is req"),
   username: yup
     .string()
@@ -15,13 +15,9 @@ const formSchema = yup.object().shape({
   password: yup
     .string()
     .min(5, "*a password is required")
-<<<<<<< HEAD
     .required("this is req"),
 
   role: yup.string().required("this is required")
-=======
-    .required("this is req")
->>>>>>> 8f2de651545e2c2a0ebc37f283dd7ca0074c8a72
 });
 
 const initialFormValues = {
@@ -139,39 +135,21 @@ export default function Signup() {
             ></input>
           </label>
         </div>
-<<<<<<< HEAD
 
         <div className="choice">
           <label>
-            <h5>Are you a Student or a Tech</h5>
+            <h5></h5>
             <select
               value={formValues.role}
               onChange={onInputChange}
               name="role"
             >
-              <option defaultValue="student">Student</option>
-              <option value="tech">Tech</option>
+              <option defaultValue="Student">Student</option>
+              <option value="Tech">Tech</option>
             </select>
           </label>
         </div>
 
-=======
-        <div className="admin">
-          <label>
-            <input
-              checked={
-                formValues.role
-                  ? (formValues.role = "tech")
-                  : (formValues.role = "student")
-              }
-              onChange={onCheckboxChange}
-              name="role"
-              type="checkbox"
-            />
-            <span className="splash-h4s"> Helper</span>
-          </label>
-        </div>
->>>>>>> 8f2de651545e2c2a0ebc37f283dd7ca0074c8a72
         <div className="submit-button">
           <label>
             <button className="login-button">Sign Up</button>
