@@ -6,7 +6,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const formSchema = yup.object().shape({
   email: yup
     .string()
-    .min(5, "*a valid email is req")
+    .email("Invalid email")
     .required("this is req"),
   username: yup
     .string()
@@ -144,8 +144,8 @@ export default function Signup() {
               onChange={onInputChange}
               name="role"
             >
-              <option defaultValue="student">Student</option>
-              <option value="tech">Tech</option>
+              <option defaultValue="Student">Student</option>
+              <option value="Tech">Tech</option>
             </select>
           </label>
         </div>
