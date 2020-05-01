@@ -273,3 +273,11 @@ h6 {
 display: block;
 color:red;
 }
+
+.tech{
+display: none;
+}
+
+.tech-on{
+display: flex;
+}
